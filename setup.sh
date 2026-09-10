@@ -57,7 +57,8 @@ die()  { printf '\033[1;31mERROR: %s\033[0m\n' "$*" >&2; exit 1; }
 
 # ---------------------------------------------------------------- 1. preflight
 say "1/7  preflight"
-[ -f "$REPO_DIR/requirements.txt" ] || die "requirements.txt not found next to setup.sh - run this script from inside the repo clone"
+REQ_FILE="$REPO_DIR/crawl4ai-project/requirements.txt"
+[ -f "$REQ_FILE" ] || die "crawl4ai-project/requirements.txt not found - run this script from inside the repo clone"
 [ -f "$REPO_DIR/crawl4ai-project/crawl_api.py" ] || die "repo checkout looks incomplete (crawl4ai-project/crawl_api.py missing)"
 
 if ! command -v "$PY_BIN" >/dev/null 2>&1; then
@@ -115,7 +116,7 @@ fi
 # ------------------------------------------------------------ 5. pip packages
 say "5/7  python packages from requirements.txt (98 pinned) - slowest step"
 "$VENV/bin/python" -m pip install --upgrade pip setuptools wheel --quiet
-"$VENV/bin/python" -m pip install -r "$REPO_DIR/requirements.txt"
+"$VENV/bin/python" -m pip install -r "$REQ_FILE"
 ok "packages installed"
 
 # ---------------------------------------------------- 6. chromium + apt deps
