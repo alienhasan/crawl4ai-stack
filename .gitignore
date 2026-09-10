@@ -1,0 +1,24 @@
+# secrets / machine state - never commit
+.env
+!.env.example
+
+# runtime output
+logs/
+*.log
+
+# python
+__pycache__/
+*.py[cod]
+.crawl4ai-venv/
+venv/
+.venv/
+*.egg-info/
+
+# crawl4ai runtime cache
+.crawl4ai/
+
+# editors / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
